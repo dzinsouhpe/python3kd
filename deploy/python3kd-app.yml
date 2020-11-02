@@ -1,0 +1,24 @@
+apiVersion: kubedirector.hpe.com/v1beta1
+kind: KubeDirectorApp
+metadata:
+  name: python3kd
+spec:
+  label:
+    name: Python 3
+    description: Python 3 on Debian Slim
+  distroID: dzinsouhpe/python3kd
+  version: '0.1.0'
+  configSchemaVersion: 7
+  defaultConfigPackage:
+    packageURL: file:///opt/configscripts/appconfig.tgz
+  roles:
+  - id: python3kd
+    cardinality: "1+"
+    imageRepoTag: docker.io/dzinsouhpe/python3kd:latest
+  config:
+    selectedRoles:
+    - python3kd
+    roleServices:
+    - roleID: python3kd
+      serviceIDs: []
+  systemdRequired: false
